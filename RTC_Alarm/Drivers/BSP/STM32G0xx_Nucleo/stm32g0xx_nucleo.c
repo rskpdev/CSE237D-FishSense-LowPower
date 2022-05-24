@@ -65,8 +65,8 @@ const uint8_t PDTypeName[] = "MB1360A";
 /** @defgroup STM32G0XX_NUCLEO_Private_Variables Private Variables
   * @{
   */ 
-GPIO_TypeDef*  LED_PORT[LEDn] = {LED4_GPIO_PORT};
-const uint16_t LED_PIN[LEDn] = {LED4_PIN};
+GPIO_TypeDef*  LED_PORT[LEDn] = {LED4_GPIO_PORT, LED5_GPIO_PORT};
+const uint16_t LED_PIN[LEDn] = {LED4_PIN, LED5_PIN};
 
 GPIO_TypeDef*  BUTTON_PORT[BUTTONn] = {USER_BUTTON_GPIO_PORT};
 const uint16_t BUTTON_PIN[BUTTONn] = {USER_BUTTON_PIN};

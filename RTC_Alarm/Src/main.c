@@ -53,7 +53,7 @@ __IO uint32_t RTCStatus = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_RTC_Init(void);
-static void MX_GPIO_Init(void);
+//static void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN PFP */
 static void RTC_TimeShow(uint8_t *showtime);
@@ -90,6 +90,7 @@ int main(void)
   /* USER CODE BEGIN Init */
   /* Configure LED4 */
   BSP_LED_Init(LED4);
+ // BSP_LED_Init(LED5);
   /* Initialize all configured peripherals */
   // change this to configure PD9 as an outpit GPIO, needs to set pin according to the RTC Timer
 
@@ -262,6 +263,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 
   /* Turn LED4 on: Alarm generation */
   BSP_LED_On(LED4);
+  BSP_LED_On(LED5);
   //added this here
 //   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET);
 

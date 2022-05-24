@@ -42,6 +42,7 @@
 typedef enum 
 {
   LED4 = 0,
+  LED5 = 1,
   LED_GREEN = LED4
 } Led_TypeDef;
 
@@ -88,8 +89,10 @@ typedef enum
   */
 #define LEDn                               1
 
-#define LED4_PIN                           GPIO_PIN_9
-#define LED4_GPIO_PORT                     GPIOD
+#define LED5_PIN                           GPIO_PIN_9
+#define LED5_GPIO_PORT                     GPIOD
+#define LED4_PIN                           GPIO_PIN_5
+#define LED4_GPIO_PORT                     GPIOA
 #define LED4_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
 #define LED4_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
   
