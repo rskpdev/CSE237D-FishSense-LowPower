@@ -106,7 +106,7 @@ int main(void)
 
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init(); // RTC_init has timer callback, so GPIO needs to be init before RTC
+  //MX_GPIO_Init(); // RTC_init has timer callback, so GPIO needs to be init before RTC
   MX_RTC_Init();
 
   /* USER CODE BEGIN 2 */
@@ -263,7 +263,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
   /* Turn LED4 on: Alarm generation */
   BSP_LED_On(LED4);
   //added this here
-   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET)
+//   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET);
 
 
 
@@ -311,26 +311,26 @@ void Error_Handler(void)
   * @param None
   * @retval None
   */
-static void MX_GPIO_Init(void)
-{
-  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  /* GPIO Ports Clock Enable */
-  LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
-
-  // change this for PD9
-  /**/
-  LL_GPIO_ResetOutputPin(GPIOD, LL_GPIO_PIN_9);
-
-  /**/
-  GPIO_InitStruct.Pin = LL_GPIO_PIN_9;
-  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
-  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;// might need to change this
-  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
-  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-  LL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
-}
+//static void MX_GPIO_Init(void)
+//{
+//  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
+//
+//  /* GPIO Ports Clock Enable */
+//  LL_IOP_GRP1_EnableClock(LL_IOP_GRP1_PERIPH_GPIOA);
+//
+//  // change this for PD9
+//  /**/
+//  LL_GPIO_ResetOutputPin(GPIOD, LL_GPIO_PIN_9);
+//
+//  /**/
+//  GPIO_InitStruct.Pin = LL_GPIO_PIN_9;
+//  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+//  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;// might need to change this
+//  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+//  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+//  LL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+//
+//}
 
 #ifdef  USE_FULL_ASSERT
 /**
