@@ -1,6 +1,0 @@
-/Users/rahulpolisetti/Documents/GitHub/CSE237D-FishSense-LowPower/RTC_Alarm/Src/main.c:71:5:main	8	static
-/Users/rahulpolisetti/Documents/GitHub/CSE237D-FishSense-LowPower/RTC_Alarm/Src/main.c:135:6:SystemClock_Config	88	static
-/Users/rahulpolisetti/Documents/GitHub/CSE237D-FishSense-LowPower/RTC_Alarm/Src/main.c:177:13:MX_RTC_Init	72	static
-/Users/rahulpolisetti/Documents/GitHub/CSE237D-FishSense-LowPower/RTC_Alarm/Src/main.c:261:6:HAL_RTC_AlarmAEventCallback	16	static
-/Users/rahulpolisetti/Documents/GitHub/CSE237D-FishSense-LowPower/RTC_Alarm/Src/main.c:279:13:RTC_TimeShow	56	static
-/Users/rahulpolisetti/Documents/GitHub/CSE237D-FishSense-LowPower/RTC_Alarm/Src/main.c:297:6:Error_Handler	8	static
