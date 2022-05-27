@@ -3,8 +3,9 @@
   ******************************************************************************
   * @file    RTC/RTC_Alarm/Src/main.c
   * @author  MCD Application Team
-  * @brief   This sample code shows how to use STM32G0xx RTC HAL API to configure
-  *          Time and Date.
+  * @brief   This code uses the STM32G0xx RTC HAL API to configure
+  *          Time and Date and set the PD9 GPIO to turn on and off and also read
+  *          GPIO input from the NVIDIA TX2 hardware.
   ******************************************************************************
   * @attention
   *

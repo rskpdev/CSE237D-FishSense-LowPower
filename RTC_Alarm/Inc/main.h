@@ -62,8 +62,8 @@ void Error_Handler(void);
 
 /* Defines related to Clock configuration */
 /* Uncomment to enable the adequate Clock Source */
-#define RTC_CLOCK_SOURCE_LSI
-/*#define RTC_CLOCK_SOURCE_LSE*/
+//#define RTC_CLOCK_SOURCE_LSI
+#define RTC_CLOCK_SOURCE_LSE
 
 #ifdef RTC_CLOCK_SOURCE_LSI
 #define RTC_ASYNCH_PREDIV    0x7F
