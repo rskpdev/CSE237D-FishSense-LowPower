@@ -34,4 +34,4 @@
 # custom
 *.metadata
 *.project
-RTC_Alarm/STM32CubeIDE/Debug/
+Debug/
