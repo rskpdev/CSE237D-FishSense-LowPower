@@ -1,0 +1,12 @@
+[Unit]
+Description=TX2 saving script for RealSense
+After=multi-user.target
+
+[Service]
+Type=idle
+User=root
+ExecStartPre=/bin/sleep 10
+ExecStart=/usr/bin/run_fs_firmware.sh
+
+[Install]
+WantedBy=multi-user.target
