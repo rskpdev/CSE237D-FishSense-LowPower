@@ -258,6 +258,8 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
   /* Turn LED4 on: Alarm generation */
   BSP_LED_On(LED4);
 
+  /* Turn PIO on: Alarm generation */
+  BSP_GPIO_On(PIO);
 
 }
 
