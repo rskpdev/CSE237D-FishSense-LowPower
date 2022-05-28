@@ -37,9 +37,6 @@ typedef enum
   TX2 = 1
 } GPIO_PIN_TypeDef;
 
-GPIO_TypeDef*  GPIO_PORT[GPIOn] = {GPIO1_GPIO_PORT};
-const uint16_t GPIO_PIN[GPIOn] = {GPIO1_PIN};
-
 /** @defgroup STM32G0XX_NUCLEO_GPIO_Functions  Custom GPIO Functions
   * @{
   */

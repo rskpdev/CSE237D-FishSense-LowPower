@@ -21,6 +21,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -89,6 +90,9 @@ int main(void)
   /* USER CODE BEGIN Init */
   /* Configure LED4 */
   BSP_LED_Init(LED4);
+
+  /* Configure PIO */
+  BSP_GPIO_Init(PIO);
   /* USER CODE END Init */
 
   /* Configure the system clock */

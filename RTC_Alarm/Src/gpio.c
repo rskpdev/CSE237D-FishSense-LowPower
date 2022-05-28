@@ -20,6 +20,9 @@
 
 #include "gpio.h"
 
+GPIO_TypeDef*  GPIO_PORT[GPIOn] = {GPIO1_GPIO_PORT};
+const uint16_t GPIO_PIN[GPIOn] = {GPIO1_PIN};
+
 /**
   * @brief  Configures  GPIO.
   * @param  Pin: pin to be configured.
