@@ -1,4 +1,5 @@
 "./Application/Startup/startup_stm32g071rbtx.o"
+"./Application/User/gpio.o"
 "./Application/User/main.o"
 "./Application/User/stm32g0xx_hal_msp.o"
 "./Application/User/stm32g0xx_it.o"
