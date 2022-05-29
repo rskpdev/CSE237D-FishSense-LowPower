@@ -90,7 +90,7 @@ typedef enum
 
 #define LED4_PIN                           GPIO_PIN_5
 #define LED4_GPIO_PORT                     GPIOA
-#define LED4_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()  
+#define LED4_GPIO_CLK_ENABLE()           __HAL_RCC_GPIOA_CLK_ENABLE()
 #define LED4_GPIO_CLK_DISABLE()          __HAL_RCC_GPIOA_CLK_DISABLE()
   
 #define LEDx_GPIO_CLK_ENABLE(__INDEX__)   do { if((__INDEX__) == 0) LED4_GPIO_CLK_ENABLE();} while(0)

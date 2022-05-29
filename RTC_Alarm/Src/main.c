@@ -50,11 +50,14 @@ RTC_HandleTypeDef hrtc;
 /* Buffer used for displaying Time */
 uint8_t aShowTime[16] = "hh:ms:ss";
 __IO uint32_t RTCStatus = 0;
+
+RTC_AlarmTypeDef sAlarm = {0};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_RTC_Init(void);
+static void MX_RTC_Set_Alarm(uint8_t);
 /* USER CODE BEGIN PFP */
 static void RTC_TimeShow(uint8_t *showtime);
 /* USER CODE END PFP */
@@ -103,7 +106,11 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  BSP_LED_On(LED4);
+  BSP_GPIO_On(PIO);
+
   MX_RTC_Init();
+  MX_RTC_Set_Alarm(0x30);
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -177,7 +184,7 @@ static void MX_RTC_Init(void)
 
   RTC_TimeTypeDef sTime = {0};
   RTC_DateTypeDef sDate = {0};
-  RTC_AlarmTypeDef sAlarm = {0};
+
 
   /* USER CODE BEGIN RTC_Init 1 */
 
@@ -223,27 +230,58 @@ static void MX_RTC_Init(void)
   {
     Error_Handler();
   }
-  /** Enable the Alarm A
+
+
+}
+
+/**
+  * @brief RTC Alarm set Function
+  * @param None
+  * @retval None
   */
-  sAlarm.AlarmTime.Hours = 0x2;
-  sAlarm.AlarmTime.Minutes = 0x20;
-  sAlarm.AlarmTime.Seconds = 0x30;
-  sAlarm.AlarmTime.SubSeconds = 0x0;
-  sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-  sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
-  sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
-  sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
-  sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_WEEKDAY;
-  sAlarm.AlarmDateWeekDay = RTC_WEEKDAY_MONDAY;
-  sAlarm.Alarm = RTC_ALARM_A;
-  if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN RTC_Init 2 */
+static void MX_RTC_Set_Alarm(uint8_t OffSec){
 
-  /* USER CODE END RTC_Init 2 */
+//	HAL_RTC_DeactivateAlarm(&hrtc, RTC_ALARM_A);
+	/** Enable the Alarm A
+	 */
 
+	RTC_DateTypeDef sdatestructureget;
+	RTC_TimeTypeDef stimestructureget;
+
+	/* Get the RTC current Time */
+	HAL_RTC_GetTime(&hrtc, &stimestructureget, RTC_FORMAT_BIN);
+	/* Get the RTC current Date */
+	HAL_RTC_GetDate(&hrtc, &sdatestructureget, RTC_FORMAT_BIN);
+
+
+
+	sAlarm.AlarmTime.Hours = stimestructureget.Hours;
+	sAlarm.AlarmTime.Minutes = stimestructureget.Minutes;
+	sAlarm.AlarmTime.Seconds = stimestructureget.Seconds + OffSec;
+	sAlarm.AlarmTime.SubSeconds = stimestructureget.SubSeconds;
+	sAlarm.AlarmTime.DayLightSaving = stimestructureget.DayLightSaving;
+	sAlarm.AlarmTime.StoreOperation = stimestructureget.StoreOperation;
+	sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
+	sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
+	sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_WEEKDAY;
+	sAlarm.AlarmDateWeekDay = sdatestructureget.WeekDay;
+	sAlarm.Alarm = RTC_ALARM_A;
+
+//	sAlarm.AlarmTime.Hours = 0x2;
+//	sAlarm.AlarmTime.Minutes = 0x20;
+//	sAlarm.AlarmTime.Seconds = 0x30;
+//	sAlarm.AlarmTime.SubSeconds = 0x0;
+//	sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+//	sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
+//	sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
+//	sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
+//	sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_WEEKDAY;
+//	sAlarm.AlarmDateWeekDay = RTC_WEEKDAY_MONDAY;
+//	sAlarm.Alarm = RTC_ALARM_A;
+	if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
+	{
+		Error_Handler();
+	}
 }
 
 /* USER CODE BEGIN 4 */
@@ -256,10 +294,10 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
 {
 
   /* Turn LED4 on: Alarm generation */
-  BSP_LED_On(LED4);
+  BSP_LED_Off(LED4);
 
   /* Turn PIO on: Alarm generation */
-  BSP_GPIO_On(PIO);
+  BSP_GPIO_Off(PIO);
 
 }
 

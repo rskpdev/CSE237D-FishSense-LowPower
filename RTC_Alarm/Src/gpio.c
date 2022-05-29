@@ -40,8 +40,8 @@ void BSP_GPIO_Init(GPIO_PIN_TypeDef Pin)
   /* Configure the GPIO_LED pin */
   gpioinitstruct.Pin = GPIO_PIN[Pin];
   gpioinitstruct.Mode = GPIO_MODE_OUTPUT_PP;
-  gpioinitstruct.Pull = GPIO_PULLUP;
-  gpioinitstruct.Speed = GPIO_SPEED_FREQ_LOW;
+  gpioinitstruct.Pull = GPIO_NOPULL;
+  gpioinitstruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
 
   HAL_GPIO_Init(GPIO_PORT[Pin], &gpioinitstruct);
 }
