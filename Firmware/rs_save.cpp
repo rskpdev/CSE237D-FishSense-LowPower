@@ -84,6 +84,7 @@ int main(int argc, char* argv[]) try
     cout << "298 out\n";
     system("echo 1 > /sys/class/gpio/gpio298/active_low");
     cout << "298 active low\n";
+    // MO: add another gpio out here 
 
     //Blink the REC LED to prove that the system has booted and is running the program
     for(int i=0; i<5; i++) {
@@ -95,6 +96,7 @@ int main(int argc, char* argv[]) try
     }
 
     while(true) {
+        // MO: remove the below if statement so that we start recording right away without the reed
         if(exec("cat /sys/class/gpio/gpio388/value") == "0\n") { //If we see a magnetic signal
             cout << "saw reed switch\n";
             rs2::pipeline pipe;
@@ -107,6 +109,10 @@ int main(int argc, char* argv[]) try
             }
 
             while(rec_flag) {
+                // MO: check time stamp
+                // set rec_flag to false after 30 sectons using the time stamp
+                // if you keep it in this loop, you're sure to save each bag without interrupting in between
+
                 //We are having fun and saving the bag, all is well in the world
                 //Fun is continuing to be had
                 if(exec("cat /sys/class/gpio/gpio388/value") == "0\n") { //If we see a magnetic signal again
@@ -130,6 +136,9 @@ int main(int argc, char* argv[]) try
                     std::this_thread::sleep_for(std::chrono::milliseconds(2000)); //Don't want to catch multiple magnetic switches
                 }
             }
+
+            // MO: write to 1 to new configured GPIO out order to signal to the STM who will read as gpio IN
+
         }
         
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
