@@ -249,9 +249,9 @@ static void MX_RTC_Set_Alarm(uint8_t OffSec){
 	RTC_TimeTypeDef stimestructureget;
 
 	/* Get the RTC current Time */
-	HAL_RTC_GetTime(&hrtc, &stimestructureget, RTC_FORMAT_BIN);
+	HAL_RTC_GetTime(&hrtc, &stimestructureget, RTC_FORMAT_BCD);
 	/* Get the RTC current Date */
-	HAL_RTC_GetDate(&hrtc, &sdatestructureget, RTC_FORMAT_BIN);
+	HAL_RTC_GetDate(&hrtc, &sdatestructureget, RTC_FORMAT_BCD);
 
 
 

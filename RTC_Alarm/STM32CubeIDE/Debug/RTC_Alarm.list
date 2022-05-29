@@ -859,19 +859,19 @@ static void MX_RTC_Set_Alarm(uint8_t OffSec){
 	RTC_TimeTypeDef stimestructureget;
 
 	/* Get the RTC current Time */
-	HAL_RTC_GetTime(&hrtc, &stimestructureget, RTC_FORMAT_BIN);
+	HAL_RTC_GetTime(&hrtc, &stimestructureget, RTC_FORMAT_BCD);
  8000534:	2408      	movs	r4, #8
  8000536:	1939      	adds	r1, r7, r4
  8000538:	4b25      	ldr	r3, [pc, #148]	; (80005d0 <MX_RTC_Set_Alarm+0xa8>)
- 800053a:	2200      	movs	r2, #0
+ 800053a:	2201      	movs	r2, #1
  800053c:	0018      	movs	r0, r3
  800053e:	f001 fd8b 	bl	8002058 <HAL_RTC_GetTime>
 	/* Get the RTC current Date */
-	HAL_RTC_GetDate(&hrtc, &sdatestructureget, RTC_FORMAT_BIN);
+	HAL_RTC_GetDate(&hrtc, &sdatestructureget, RTC_FORMAT_BCD);
  8000542:	251c      	movs	r5, #28
  8000544:	1979      	adds	r1, r7, r5
  8000546:	4b22      	ldr	r3, [pc, #136]	; (80005d0 <MX_RTC_Set_Alarm+0xa8>)
- 8000548:	2200      	movs	r2, #0
+ 8000548:	2201      	movs	r2, #1
  800054a:	0018      	movs	r0, r3
  800054c:	f001 fe72 	bl	8002234 <HAL_RTC_GetDate>
 
