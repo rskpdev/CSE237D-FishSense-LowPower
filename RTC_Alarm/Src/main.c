@@ -96,6 +96,8 @@ int main(void)
 
   /* Configure PIO */
   BSP_GPIO_Init(PIO);
+
+  BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -106,11 +108,11 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  BSP_LED_On(LED4);
-  BSP_GPIO_On(PIO);
+
+
 
   MX_RTC_Init();
-  MX_RTC_Set_Alarm(0x30);
+
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -121,7 +123,15 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if(BSP_PB_GetState(BUTTON_USER) == 0)
+	  {
+		  BSP_LED_On(LED4);
+		  BSP_GPIO_On(PIO);
+		  MX_RTC_Set_Alarm(0x30);
+	  }
+	  else{
+		  BSP_LED_Off(LED4);
+	  }
     /* USER CODE BEGIN 3 */
     /* Display the updated Time */
     RTC_TimeShow(aShowTime);
@@ -267,17 +277,6 @@ static void MX_RTC_Set_Alarm(uint8_t OffSec){
 	sAlarm.AlarmDateWeekDay = sdatestructureget.WeekDay;
 	sAlarm.Alarm = RTC_ALARM_A;
 
-//	sAlarm.AlarmTime.Hours = 0x2;
-//	sAlarm.AlarmTime.Minutes = 0x20;
-//	sAlarm.AlarmTime.Seconds = 0x30;
-//	sAlarm.AlarmTime.SubSeconds = 0x0;
-//	sAlarm.AlarmTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-//	sAlarm.AlarmTime.StoreOperation = RTC_STOREOPERATION_RESET;
-//	sAlarm.AlarmMask = RTC_ALARMMASK_NONE;
-//	sAlarm.AlarmSubSecondMask = RTC_ALARMSUBSECONDMASK_NONE;
-//	sAlarm.AlarmDateWeekDaySel = RTC_ALARMDATEWEEKDAYSEL_WEEKDAY;
-//	sAlarm.AlarmDateWeekDay = RTC_WEEKDAY_MONDAY;
-//	sAlarm.Alarm = RTC_ALARM_A;
 	if (HAL_RTC_SetAlarm_IT(&hrtc, &sAlarm, RTC_FORMAT_BCD) != HAL_OK)
 	{
 		Error_Handler();
