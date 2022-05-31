@@ -21,6 +21,8 @@ using namespace std;
 #include <stdexcept>
 #include <ctime>
 
+using namespace std::chrono;
+
 //Saving firmware for FishSense prototype 2.0 (TX2)
 //February 12th, 2022
 //Peter Tueller ptueller@eng.ucsd.edu
