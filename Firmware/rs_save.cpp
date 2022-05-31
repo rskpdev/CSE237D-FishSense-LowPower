@@ -19,6 +19,7 @@ using namespace std;
 #include <string.h>
 #include <chrono>
 #include <stdexcept>
+#include <ctime>
 
 //Saving firmware for FishSense prototype 2.0 (TX2)
 //February 12th, 2022
@@ -84,7 +85,15 @@ int main(int argc, char* argv[]) try
     cout << "298 out\n";
     system("echo 1 > /sys/class/gpio/gpio298/active_low");
     cout << "298 active low\n";
-    // MO: add another gpio out here 
+    
+    // MO: add another gpio out here
+    system("echo 480 > /sys/class/gpio/export");
+    cout << "NEW 480 export\n";
+    system("echo out > /sys/class/gpio/gpio480/direction");
+    cout << "NEW 480 out\n";
+    system("echo 1 > /sys/class/gpio/gpio480/active_high");
+    cout << "NEW 480 active HIGH\n";
+   
 
     //Blink the REC LED to prove that the system has booted and is running the program
     for(int i=0; i<5; i++) {
@@ -97,8 +106,8 @@ int main(int argc, char* argv[]) try
 
     while(true) {
         // MO: remove the below if statement so that we start recording right away without the reed
-        if(exec("cat /sys/class/gpio/gpio388/value") == "0\n") { //If we see a magnetic signal
-            cout << "saw reed switch\n";
+        //if(exec("cat /sys/class/gpio/gpio388/value") == "0\n") { //If we see a magnetic signal
+            cout << "REMOVED reed switch\n";
             rs2::pipeline pipe;
             if(!rec_flag) { //And are not already recording
                 system("echo 0 > /sys/class/gpio/gpio298/value"); //Turn on REC LED
@@ -108,7 +117,11 @@ int main(int argc, char* argv[]) try
 		        cout << "saved bag to " << bag_location.str() << endl;
             }
 
-            while(rec_flag) {
+            auto start = std::chrono::system_clock::now();
+            auto duration = 10s;
+
+            auto now = std::chrono::steady_clock::now;
+            while(rec_flag && (now - start < duration)) {
                 // MO: check time stamp
                 // set rec_flag to false after 30 sectons using the time stamp
                 // if you keep it in this loop, you're sure to save each bag without interrupting in between
@@ -135,11 +148,13 @@ int main(int argc, char* argv[]) try
                     cfg.enable_record_to_file(bag_location_new.str().c_str());
                     std::this_thread::sleep_for(std::chrono::milliseconds(2000)); //Don't want to catch multiple magnetic switches
                 }
+                now = std::chrono::steady_clock::now;
             }
 
             // MO: write to 1 to new configured GPIO out order to signal to the STM who will read as gpio IN
-
-        }
+            system("echo 1 > /sys/class/gpio/gpio480/value"); //Turn on REC LED
+            cout << "wrote 1 to gpio, stopped recording\n"
+        //}
         
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
