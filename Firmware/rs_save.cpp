@@ -21,6 +21,8 @@ using namespace std;
 #include <stdexcept>
 #include <ctime>
 
+using namespace std::chrono;
+
 //Saving firmware for FishSense prototype 2.0 (TX2)
 //February 12th, 2022
 //Peter Tueller ptueller@eng.ucsd.edu
@@ -117,11 +119,13 @@ int main(int argc, char* argv[]) try
 		        cout << "saved bag to " << bag_location.str() << endl;
             }
 
-            auto start = std::chrono::system_clock::now();
-            auto duration = 10s;
+            auto start = high_resolution_clock::now();
+            auto duration = 20;
 
-            auto now = std::chrono::steady_clock::now;
-            while(rec_flag && (now - start < duration)) {
+            auto now = high_resolution_clock::now();
+            auto runtime = duration_cast<microseconds>(now - start);
+
+            while(rec_flag && (runtime.count() < duration)) {
                 // MO: check time stamp
                 // set rec_flag to false after 30 sectons using the time stamp
                 // if you keep it in this loop, you're sure to save each bag without interrupting in between
@@ -147,8 +151,9 @@ int main(int argc, char* argv[]) try
                     bag_location_new << dirprefix.str().c_str() << bag_index << ".bag";
                     cfg.enable_record_to_file(bag_location_new.str().c_str());
                     std::this_thread::sleep_for(std::chrono::milliseconds(2000)); //Don't want to catch multiple magnetic switches
-                //}
-                now = std::chrono::steady_clock::now;
+                }
+                now = high_resolution_clock::now();
+                runtime = duration_cast<microseconds>(now - start);
             }
 
             // MO: write to 1 to new configured GPIO out order to signal to the STM who will read as gpio IN

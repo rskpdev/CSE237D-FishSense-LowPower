@@ -113,6 +113,9 @@ int main(void)
 
   MX_RTC_Init();
 
+//  BSP_LED_On(LED4);
+//  BSP_GPIO_On(PIO);
+
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -130,7 +133,7 @@ int main(void)
 		  MX_RTC_Set_Alarm(0x30);
 	  }
 	  else{
-		  BSP_LED_Off(LED4);
+//		  BSP_LED_Off(LED4);
 	  }
     /* USER CODE BEGIN 3 */
     /* Display the updated Time */
