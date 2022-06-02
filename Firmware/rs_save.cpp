@@ -128,7 +128,7 @@ int main(int argc, char* argv[]) try
 
                 //We are having fun and saving the bag, all is well in the world
                 //Fun is continuing to be had
-                if(exec("cat /sys/class/gpio/gpio388/value") == "0\n") { //If we see a magnetic signal again
+                //if(exec("cat /sys/class/gpio/gpio388/value") == "0\n") { //If we see a magnetic signal again
                     rec_flag = false;
                     system("echo 1 > /sys/class/gpio/gpio298/value"); //Turn off REC LED
                     pipe.stop(); //This should save the bag file
@@ -147,7 +147,7 @@ int main(int argc, char* argv[]) try
                     bag_location_new << dirprefix.str().c_str() << bag_index << ".bag";
                     cfg.enable_record_to_file(bag_location_new.str().c_str());
                     std::this_thread::sleep_for(std::chrono::milliseconds(2000)); //Don't want to catch multiple magnetic switches
-                }
+                //}
                 now = std::chrono::steady_clock::now;
             }
 
