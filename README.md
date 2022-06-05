@@ -13,6 +13,7 @@ The FishSense capsule is an underwater fish activity recording module, implement
 Rahul Polisetti, Mohana Seelan, Kyle Yang
 
 ## How to Replicate the Project
+Low-power system
 1. Tx2 sends sleep signal to STM32
 2. STM32 turns of entire system
 3. STM32 wakes up entire system after set amount of time
