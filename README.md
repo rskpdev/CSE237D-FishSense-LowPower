@@ -32,6 +32,7 @@ main.c includes user-defined functions written from the commands included in Hal
 The pins that were modified include those labelled under ASG003 and part name Orbitty, under files gpio_pq4_pi4, can_gpio2_paa2, gpio_mdm7_py6, and gpio_mdm1_py0 with are connected with pins H13, G14, A22, and A23, respectively. The voltage level is 3.3 with each pin and the header-pin number is P4-7, P4-8, P4-9, and P4-10 for each pin. The identical voltage amount indicate the pins are used for similar functions, and all interrelate in the timer implementation. 
 
 The pins are all used as general purpose inputs/outputs to connect the STM with the Tx2 in order to implement timers that would control the recording of the RealSense. Once the user embeds functions into the STM IDE, the functions will be able to be implemented through the control functions of the orbitty. THE STM32CubeIDE is the interface which programs the board, appearing as such:
+
 <img width="941" alt="ui" src="https://user-images.githubusercontent.com/89044922/172065193-1b86f4bb-f8b0-434a-b26e-b4110fa0a410.png">
 
 Once the user embeds functions into the STM IDE, the ide can communicate with the Nvidia Jetson via a power I/O board used as carrier for the STM32. The only pin on the STM required for the low-power mode is the PD9 pin located on the bottom right hand side of the STM. The carrier board is engineered apart from the embedded systems to use as an external triggering mechanism, appearing as such:
