@@ -113,8 +113,8 @@ int main(void)
 
   MX_RTC_Init();
 
-//  BSP_LED_On(LED4);
-//  BSP_GPIO_On(PIO);
+//  BSP_LED_Off(LED4);
+  BSP_GPIO_On(PIO);
 
   /* USER CODE BEGIN 2 */
 
@@ -129,8 +129,8 @@ int main(void)
 	  if(BSP_PB_GetState(BUTTON_USER) == 0)
 	  {
 		  BSP_LED_On(LED4);
-		  BSP_GPIO_On(PIO);
-		  MX_RTC_Set_Alarm(0x30);
+		  BSP_GPIO_Off(PIO);
+		  MX_RTC_Set_Alarm(0x3);
 	  }
 	  else{
 //		  BSP_LED_Off(LED4);
@@ -299,7 +299,7 @@ void HAL_RTC_AlarmAEventCallback(RTC_HandleTypeDef *hrtc)
   BSP_LED_Off(LED4);
 
   /* Turn PIO on: Alarm generation */
-  BSP_GPIO_Off(PIO);
+  BSP_GPIO_On(PIO);
 
 }
 
