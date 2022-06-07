@@ -1,16 +1,13 @@
 # CSE237D-FishSense-LowPower
 FishSense low power mode project web presence for CSE237D
 
-
-
-
-
-TODO: updateing  readme --> what your project is about,  who are the team members, how to replicate the project, documentation, etc
 ## Project Overview
 The FishSense capsule is an underwater fish activity recording module, implemented with an external low-power system using the NVidia Jetson TX2 and the STM32 board. FishSense was built to automatically detect and estimate the biomass of fish, using both RGB and depth cameras with a YOLO-v5 machine learning algorithm to record fish. This was done to preserve ecosystems and hault unhealthy catch/release methods. The Low-power mode involves an interfacing between the STM and Nvidia to create a clock timer, according to functions written in the HAL documentation, which activates and deactivates clocks according to a defined duration.
 
 ## Project Team-Members
-Rahul Polisetti, Mohana Seelan, Kyle Yang
+Rahul Polisetti
+Mohana Seelan
+Kyle Yang
 
 ## How to Replicate the Project
 Low-power system
@@ -48,6 +45,4 @@ Once the user embeds functions into the STM IDE, the ide can communicate with th
 
 
 
-TODO: wiki You can use the wiki to provide useful information and documentation about your project. At minimum, this should give a brief overview (abstract) of your project, discuss the organization of your repo, and provide other more high-level information that a visitor can use to better understand the project. 
 
-TODO Repo: You should post all of the materials that you have to generate for this class in the repo. This includes class presentations, reports, videos, etc.
