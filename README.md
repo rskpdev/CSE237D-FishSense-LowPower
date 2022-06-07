@@ -1,5 +1,6 @@
 # CSE237D-FishSense-LowPower
 FishSense low power mode project web presence for CSE237D
+project wiki: https://github.com/rskpdev/CSE237D-FishSense-LowPower/wiki
 
 ## Project Overview
 The FishSense capsule is an underwater fish activity recording module, implemented with an external low-power system using the NVidia Jetson TX2 and the STM32 board. FishSense was built to automatically detect and estimate the biomass of fish, using both RGB and depth cameras with a YOLO-v5 machine learning algorithm to record fish. This was done to preserve ecosystems and hault unhealthy catch/release methods. The Low-power mode involves an interfacing between the STM and Nvidia to create a clock timer, according to functions written in the HAL documentation, which activates and deactivates clocks according to a defined duration.
