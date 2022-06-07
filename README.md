@@ -1,5 +1,6 @@
 # CSE237D-FishSense-LowPower
-FishSense low power mode project web presence for CSE237D
+FishSense low power mode project web presence for CSE237D.
+
 project wiki: https://github.com/rskpdev/CSE237D-FishSense-LowPower/wiki
 
 ## Project Overview
