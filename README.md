@@ -8,7 +8,9 @@ The FishSense capsule is an underwater fish activity recording module, implement
 
 ## Project Team-Members
 Rahul Polisetti
+
 Mohana Seelan
+
 Kyle Yang
 
 ## How to Replicate the Project
